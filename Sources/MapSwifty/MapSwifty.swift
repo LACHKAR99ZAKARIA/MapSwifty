@@ -2,7 +2,7 @@ import SwiftUI
 import MapKit
 
 public struct MapSwifty: UIViewRepresentable {
-    let mapView = MKMapView()
+    public let mapView = MKMapView()
 
     // MARK: Helpers
     public func makeUIView(context: Context) -> MKMapView {
@@ -26,10 +26,10 @@ public struct MapSwifty: UIViewRepresentable {
 
 extension MapSwifty {
     public class MapCoordinator: NSObject, MKMapViewDelegate {
-        let parent : MapSwifty
-        var userLocationCoordinate : CLLocationCoordinate2D?
-        var currentRegion: MKCoordinateRegion?
-        var previousSelectedIndex: Int?
+        public let parent : MapSwifty
+        public var userLocationCoordinate : CLLocationCoordinate2D?
+        public var currentRegion: MKCoordinateRegion?
+        public var previousSelectedIndex: Int?
         public init(parent: MapSwifty) {
             self.parent = parent
         }
