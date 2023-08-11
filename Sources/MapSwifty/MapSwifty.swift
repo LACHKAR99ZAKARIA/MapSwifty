@@ -3,16 +3,26 @@ import MapKit
 
 public struct MapSwifty: UIViewRepresentable {
     public let mapView = MKMapView()
+    var minZoom: Double?
+    var maxZoom: Double?
 
     // MARK: Helpers
-    public init() {}
+    public init(minZoom: Double? = nil, maxZoom: Double? = nil) {
+        self.minZoom = minZoom
+        self.maxZoom = maxZoom
+    }
     public func makeUIView(context: Context) -> MKMapView {
         mapView.delegate = context.coordinator
         mapView.isRotateEnabled = false
         mapView.showsUserLocation = true
         mapView.userTrackingMode = .follow
-        // let zoomRange = MKMapView.CameraZoomRange(minCenterCoordinateDistance: 500, maxCenterCoordinateDistance: 20000)
-        // mapView.cameraZoomRange = zoomRange
+        if let minZ = self.minZoom , let maxZ = self.maxZoom {
+            if #available(iOS 13.0, *) {
+                let zoomRange = MKMapView.CameraZoomRange(minCenterCoordinateDistance: minZ, maxCenterCoordinateDistance: maxZ)
+                mapView.cameraZoomRange = zoomRange
+            } else {
+            }
+        }
         mapView.mapType = .standard
         return mapView
     }
