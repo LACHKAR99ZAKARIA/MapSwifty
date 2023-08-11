@@ -1,11 +1,11 @@
 import SwiftUI
 import MapKit
 
-public struct MapSwifty: UIViewRepresentable {
+struct MapSwifty: UIViewRepresentable {
     let mapView = MKMapView()
 
     // MARK: Helpers
-    public func makeUIView(context: Context) -> MKMapView {
+    func makeUIView(context: Context) -> MKMapView {
         mapView.delegate = context.coordinator
         mapView.isRotateEnabled = false
         mapView.showsUserLocation = true
@@ -16,31 +16,31 @@ public struct MapSwifty: UIViewRepresentable {
         return mapView
     }
 
-    public func updateUIView(_ uiView: MKMapView, context: Context) {
+    func updateUIView(_ uiView: MKMapView, context: Context) {
     }
 
-    public func makeCoordinator() -> MapCoordinator {
+    func makeCoordinator() -> MapCoordinator {
         return MapCoordinator(parent: self)
     }
 }
 
 extension MapSwifty {
-    public class MapCoordinator: NSObject, MKMapViewDelegate {
+    class MapCoordinator: NSObject, MKMapViewDelegate {
         let parent : MapSwifty
         var userLocationCoordinate : CLLocationCoordinate2D?
         var currentRegion: MKCoordinateRegion?
         var previousSelectedIndex: Int?
-        public init(parent: MapSwifty) {
+        init(parent: MapSwifty) {
             self.parent = parent
         }
         // MARK: Helpers
         // MARK: didUpdate userLocation
-        public func mapView(_ mapView: MKMapView, didUpdate userLocation: MKUserLocation) {
+        func mapView(_ mapView: MKMapView, didUpdate userLocation: MKUserLocation) {
         }
         // MARK: didUpdate region
-        public func mapView(_ mapView: MKMapView, regionDidChangeAnimated animated: Bool) {
+        func mapView(_ mapView: MKMapView, regionDidChangeAnimated animated: Bool) {
         }
-        public func mapViewDidChangeVisibleRegion(_ mapView: MKMapView) {
+        func mapViewDidChangeVisibleRegion(_ mapView: MKMapView) {
         }
     }
 }
