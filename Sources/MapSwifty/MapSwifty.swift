@@ -5,6 +5,7 @@ public struct MapSwifty: UIViewRepresentable {
     public let mapView = MKMapView()
 
     // MARK: Helpers
+    public init() {}
     public func makeUIView(context: Context) -> MKMapView {
         mapView.delegate = context.coordinator
         mapView.isRotateEnabled = false
