@@ -3,14 +3,16 @@ import MapKit
 
 @available(iOS 13.0, *)
 public struct MapSwifty: UIViewRepresentable {
-    public var mapView = MKMapView()
-    public var minZoom: Double?
-    public var maxZoom: Double?
+    var mapView = MKMapView()
+    var minZoom: Double?
+    var maxZoom: Double?
+    var mapType: MKMapType = .standard
 
     // MARK: Helpers
-    public init(minZoom: Double? = nil, maxZoom: Double? = nil) {
+    public init(minZoom: Double? = nil, maxZoom: Double? = nil, mapType: MKMapType = MKMapType.standard) {
         self.minZoom = minZoom
         self.maxZoom = maxZoom
+        self.mapType = mapType
     }
     public func makeUIView(context: Context) -> MKMapView {
         mapView.delegate = context.coordinator
@@ -21,7 +23,7 @@ public struct MapSwifty: UIViewRepresentable {
             let zoomRange = MKMapView.CameraZoomRange(minCenterCoordinateDistance: minZ, maxCenterCoordinateDistance: maxZ)
             mapView.cameraZoomRange = zoomRange
         }
-        mapView.mapType = .standard
+        mapView.mapType = mapType
         return mapView
     }
 
