@@ -2,27 +2,22 @@ import SwiftUI
 import MapKit
 
 @available(iOS 13.0, *)
-class MapSettings: ObservableObject {
-    @Published var mapType: MKMapType = .standard
-}
-
-@available(iOS 13.0, *)
 public struct MapSwifty: UIViewRepresentable {
-    @ObservedObject var mapSettings = MapSettings()
-
     var minZoom: Double?
     var maxZoom: Double?
     var userTrackingMode: MKUserTrackingMode
     var showsUserLocation: Bool
     var isRotateEnabled: Bool
+    var mapType: MKMapType
 
     // MARK: Helpers
-    public init(minZoom: Double? = nil, maxZoom: Double? = nil, userTrackingMode: MKUserTrackingMode = .none, showsUserLocation: Bool = false, isRotateEnabled: Bool = false) {
+    public init(minZoom: Double? = nil, maxZoom: Double? = nil, userTrackingMode: MKUserTrackingMode = .none, showsUserLocation: Bool = false, isRotateEnabled: Bool = false, mapType: MKMapType = .standard) {
         self.minZoom = minZoom
         self.maxZoom = maxZoom
         self.userTrackingMode = userTrackingMode
         self.showsUserLocation = showsUserLocation
         self.isRotateEnabled = isRotateEnabled
+        self.mapType = mapType
     }
 
     public func makeUIView(context: Context) -> MKMapView {
@@ -37,7 +32,7 @@ public struct MapSwifty: UIViewRepresentable {
             mapView.cameraZoomRange = zoomRange
         }
 
-        mapView.mapType = mapSettings.mapType
+        mapView.mapType = mapType
         return mapView
     }
 
@@ -51,12 +46,10 @@ public struct MapSwifty: UIViewRepresentable {
            context.coordinator.parent.userTrackingMode == self.userTrackingMode,
            context.coordinator.parent.showsUserLocation == self.showsUserLocation,
            context.coordinator.parent.isRotateEnabled == self.isRotateEnabled,
-           context.coordinator.parent.mapSettings.mapType == self.mapSettings.mapType {
-            // Aucun changement dans les paramètres
+           context.coordinator.parent.mapType == self.mapType {
             return
         }
 
-        // Mettez à jour la vue avec les nouveaux paramètres
         uiView.isRotateEnabled = self.isRotateEnabled
         uiView.showsUserLocation = self.showsUserLocation
         uiView.userTrackingMode = self.userTrackingMode
@@ -66,9 +59,8 @@ public struct MapSwifty: UIViewRepresentable {
             uiView.cameraZoomRange = zoomRange
         }
 
-        uiView.mapType = mapSettings.mapType
+        uiView.mapType = mapType
 
-        // Mettez également à jour les propriétés de coordination si nécessaire
         context.coordinator.parent.minZoom = self.minZoom
         context.coordinator.parent.maxZoom = self.maxZoom
     }
@@ -103,6 +95,7 @@ extension MapSwifty {
         }
     }
 }
+
 
 
 
