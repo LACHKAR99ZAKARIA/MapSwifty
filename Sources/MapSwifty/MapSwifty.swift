@@ -3,9 +3,9 @@ import MapKit
 
 @available(iOS 13.0, *)
 public struct MapSwifty: UIViewRepresentable {
-    public let mapView = MKMapView()
-    var minZoom: Double?
-    var maxZoom: Double?
+    public var mapView = MKMapView()
+    public var minZoom: Double?
+    public var maxZoom: Double?
 
     // MARK: Helpers
     public init(minZoom: Double? = nil, maxZoom: Double? = nil) {
