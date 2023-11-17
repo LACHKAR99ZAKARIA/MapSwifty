@@ -59,12 +59,11 @@ public struct MapSwifty: UIViewRepresentable {
         if let minZ = self.minZoom, let maxZ = self.maxZoom {
             let zoomRange = MKMapView.CameraZoomRange(minCenterCoordinateDistance: minZ, maxCenterCoordinateDistance: maxZ)
             uiView.cameraZoomRange = zoomRange
+            uiView.mapType = mapType
+
+            context.coordinator.parent.minZoom = self.minZoom
+            context.coordinator.parent.maxZoom = self.maxZoom
         }
-
-        uiView.mapType = mapType
-
-        context.coordinator.parent.minZoom = self.minZoom
-        context.coordinator.parent.maxZoom = self.maxZoom
     }
 
     public func makeCoordinator() -> MapCoordinator {
