@@ -3,6 +3,8 @@ import MapKit
 
 @available(iOS 13.0, *)
 public struct MapSwifty: UIViewRepresentable {
+    @Binding var coordinates: [CLLocationCoordinate2D]?
+    @Binding var userLocation: CLLocationCoordinate2D?
     var minZoom: Double?
     var maxZoom: Double?
     var userTrackingMode: MKUserTrackingMode
@@ -11,7 +13,16 @@ public struct MapSwifty: UIViewRepresentable {
     var mapType: MKMapType
 
     // MARK: Helpers
-    public init(minZoom: Double? = nil, maxZoom: Double? = nil, userTrackingMode: MKUserTrackingMode = .none, showsUserLocation: Bool = false, isRotateEnabled: Bool = false, mapType: MKMapType = .standard) {
+    public init(coordinates: Binding<[CLLocationCoordinate2D]?> = .constant(nil),
+                userLocation: Binding<CLLocationCoordinate2D?> = .constant(nil),
+                minZoom: Double? = nil,
+                maxZoom: Double? = nil,
+                userTrackingMode: MKUserTrackingMode = .none,
+                showsUserLocation: Bool = false,
+                isRotateEnabled: Bool = false,
+                mapType: MKMapType = .standard) {
+        self._coordinates = coordinates
+        self._userLocation = userLocation
         self.minZoom = minZoom
         self.maxZoom = maxZoom
         self.userTrackingMode = userTrackingMode
@@ -33,37 +44,39 @@ public struct MapSwifty: UIViewRepresentable {
         }
 
         mapView.mapType = mapType
+
+        // Add code to update map based on provided coordinates
+        if let coordinates = self.coordinates {
+            updateMap(with: coordinates, mapView: mapView)
+        }
+
         return mapView
     }
 
     public func updateUIView(_ uiView: MKMapView, context: Context) {
-        if let oldMinZoom = context.coordinator.parent.minZoom,
-           let oldMaxZoom = context.coordinator.parent.maxZoom,
-           let newMinZoom = self.minZoom,
-           let newMaxZoom = self.maxZoom,
-           oldMinZoom.isEqual(to: newMinZoom),
-           oldMaxZoom.isEqual(to: newMaxZoom),
-           context.coordinator.parent.userTrackingMode == self.userTrackingMode,
-           context.coordinator.parent.showsUserLocation == self.showsUserLocation,
-           context.coordinator.parent.isRotateEnabled == self.isRotateEnabled,
-           context.coordinator.parent.mapType == self.mapType {
-            return
+        // Update other properties if needed
+        uiView.isRotateEnabled = isRotateEnabled
+        uiView.showsUserLocation = showsUserLocation
+        uiView.userTrackingMode = userTrackingMode
+
+        if let coordinates = self.coordinates {
+            updateMap(with: coordinates, mapView: uiView)
         }
 
-        withAnimation {
-            uiView.isRotateEnabled = self.isRotateEnabled
-            uiView.showsUserLocation = self.showsUserLocation
-            uiView.userTrackingMode = self.userTrackingMode
+        // Update user location if provided
+        if let userLocation = self.userLocation {
+            uiView.setCenter(userLocation, animated: true)
         }
+    }
 
-        if let minZ = self.minZoom, let maxZ = self.maxZoom {
-            let zoomRange = MKMapView.CameraZoomRange(minCenterCoordinateDistance: minZ, maxCenterCoordinateDistance: maxZ)
-            uiView.cameraZoomRange = zoomRange
-            uiView.mapType = mapType
-
-            context.coordinator.parent.minZoom = self.minZoom
-            context.coordinator.parent.maxZoom = self.maxZoom
+    private func updateMap(with coordinates: [CLLocationCoordinate2D], mapView: MKMapView) {
+        // Add code to update the map based on the provided coordinates
+        // For example, you can add annotations or overlays
+        mapView.removeAnnotations(mapView.annotations)
+        let annotations = coordinates.map { coordinate in
+            MKPointAnnotation(__coordinate: coordinate)
         }
+        mapView.addAnnotations(annotations)
     }
 
     public func makeCoordinator() -> MapCoordinator {
@@ -80,20 +93,7 @@ extension MapSwifty {
             self.parent = parent
         }
 
-        // MARK: Helpers
-        // MARK: didUpdate userLocation
-        public func mapView(_ mapView: MKMapView, didUpdate userLocation: MKUserLocation) {
-            // Implement as needed
-        }
-
-        // MARK: didUpdate region
-        public func mapView(_ mapView: MKMapView, regionDidChangeAnimated animated: Bool) {
-            // Implement as needed
-        }
-
-        public func mapViewDidChangeVisibleRegion(_ mapView: MKMapView) {
-            // Implement as needed
-        }
+        // MARK: Implement MKMapViewDelegate methods as needed
     }
 }
 
