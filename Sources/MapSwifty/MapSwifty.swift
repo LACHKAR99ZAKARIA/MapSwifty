@@ -50,20 +50,9 @@ public struct MapSwifty: UIViewRepresentable {
             return
         }
 
-        uiView.isRotateEnabled = self.isRotateEnabled
-        uiView.showsUserLocation = self.showsUserLocation
-
-        // Check if userTrackingMode is changing to .follow
-        let isUserTrackingModeChangingToFollow = context.coordinator.parent.userTrackingMode != .follow && self.userTrackingMode == .follow
-
-        if isUserTrackingModeChangingToFollow {
-            // Animate the change to userTrackingMode
-            let animator = UIViewPropertyAnimator(duration: 0.5, curve: .easeInOut) {
-                uiView.userTrackingMode = self.userTrackingMode
-            }
-            animator.startAnimation()
-        } else {
-            // Set userTrackingMode directly without animation for other cases
+        withAnimation {
+            uiView.isRotateEnabled = self.isRotateEnabled
+            uiView.showsUserLocation = self.showsUserLocation
             uiView.userTrackingMode = self.userTrackingMode
         }
 
