@@ -52,7 +52,20 @@ public struct MapSwifty: UIViewRepresentable {
 
         uiView.isRotateEnabled = self.isRotateEnabled
         uiView.showsUserLocation = self.showsUserLocation
-        uiView.userTrackingMode = self.userTrackingMode
+
+        // Check if userTrackingMode is changing to .follow
+        let isUserTrackingModeChangingToFollow = context.coordinator.parent.userTrackingMode != .follow && self.userTrackingMode == .follow
+
+        if isUserTrackingModeChangingToFollow {
+            // Animate the change to userTrackingMode
+            let animator = UIViewPropertyAnimator(duration: 0.5, curve: .easeInOut) {
+                uiView.userTrackingMode = self.userTrackingMode
+            }
+            animator.startAnimation()
+        } else {
+            // Set userTrackingMode directly without animation for other cases
+            uiView.userTrackingMode = self.userTrackingMode
+        }
 
         if let minZ = self.minZoom, let maxZ = self.maxZoom {
             let zoomRange = MKMapView.CameraZoomRange(minCenterCoordinateDistance: minZ, maxCenterCoordinateDistance: maxZ)
