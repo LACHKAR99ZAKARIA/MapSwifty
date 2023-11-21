@@ -11,7 +11,7 @@ SwiftUI component simplifying map integration using MapKit.
 `MapSwifty` makes it easy to display maps with annotations, customize appearance, and track user location.
 
 </div>
-**
+
 # MapSwifty
 
 `SwiftyMap` is a SwiftUI component that provides a customizable map view using `MapKit`. It allows you to easily integrate maps into your SwiftUI app with support for annotations.
