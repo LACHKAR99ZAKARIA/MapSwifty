@@ -21,10 +21,43 @@ Add the following Swift package dependency to your Xcode project:
 .package(url: "https://github.com/your-username/SwiftyMap.git", from: "1.0.0")
 ```
 
-### Import
+## Import
 
 Import the SwiftyMap module in your SwiftUI view:
 
 ```swift
 import SwiftyMap
+```
+
+## Initialization
+
+Create an array of SwiftyAnnotationItem objects to represent map annotations. Then, use the MapSwifty view in your SwiftUI hierarchy:
+
+
+``` 
+import SwiftUI
+import SwiftyMap
+
+struct ContentView: View {
+    @State private var userLocation: CLLocationCoordinate2D? = nil
+
+    var body: some View {
+        MapSwifty(
+            userLocation: $userLocation,
+            minZoom: 1000,
+            maxZoom: 50000,
+            userTrackingMode: .follow,
+            showsUserLocation: true,
+            isRotateEnabled: true,
+            mapType: .standard,
+            annotationItems: [
+                SwiftyAnnotationItem(coordinate: CLLocationCoordinate2D(latitude: 37.7749, longitude: -122.4194), view: AnyView(Text("San Francisco"))),
+                SwiftyAnnotationItem(coordinate: CLLocationCoordinate2D(latitude: 34.0522, longitude: -118.2437), view: AnyView(Text("Los Angeles")))
+            ]
+        )
+        .frame(height: 300)
+    }
+}
+
+
 ```
