@@ -71,7 +71,3 @@ Adjust the parameters according to your requirements. You can customize the appe
 - **User Tracking**: Customize the user tracking mode with the `userTrackingMode` property.
 - **Rotation**: Enable or disable map rotation using the `isRotateEnabled` property.
 - **Map Type**: Choose the map type (standard, satellite, hybrid) with the `mapType` property.
-
-### License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
