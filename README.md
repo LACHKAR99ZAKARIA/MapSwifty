@@ -18,7 +18,7 @@ To use `SwiftyMap` in your SwiftUI project, follow these steps:
 Add the following Swift package dependency to your Xcode project:
 
 ```swift
-.package(url: "https://github.com/your-username/SwiftyMap.git", from: "1.0.0")
+.package(url: "https://github.com/your-username/SwiftyMap.git", from: "1.1.0")
 ```
 
 ### Import
