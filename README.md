@@ -21,17 +21,17 @@ Add the following Swift package dependency to your Xcode project:
 .package(url: "https://github.com/your-username/SwiftyMap.git", from: "1.0.0")
 ```
 
-## Import
+### Import
 
-Import the SwiftyMap module in your SwiftUI view:
+Import the `SwiftyMap` module in your SwiftUI view:
 
 ```swift
 import SwiftyMap
 ```
 
-## Initialization
+### Initialization
 
-Create an array of SwiftyAnnotationItem objects to represent map annotations. Then, use the MapSwifty view in your SwiftUI hierarchy:
+Create an array of `SwiftyAnnotationItem` objects to represent map annotations. Then, use the `MapSwifty` view in your SwiftUI hierarchy:
 
 
 ``` 
@@ -61,3 +61,17 @@ struct ContentView: View {
 
 
 ```
+
+Adjust the parameters according to your requirements. You can customize the appearance of annotations by providing your own SwiftUI view in the `SwiftyAnnotationItem`.
+
+### Customization
+
+- **User Location**: You can track the user's location by binding the `userLocation` property.
+- **Zoom Levels**: Set the `minZoom` and `maxZoom` properties to specify the minimum and maximum zoom levels.
+- **User Tracking**: Customize the user tracking mode with the `userTrackingMode` property.
+- **Rotation**: Enable or disable map rotation using the `isRotateEnabled` property.
+- **Map Type**: Choose the map type (standard, satellite, hybrid) with the `mapType` property.
+
+### License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
