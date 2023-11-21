@@ -74,7 +74,7 @@ Adjust the parameters according to your requirements. You can customize the appe
 
 ### License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+This project is licensed under the MIT License - see the [LICENSE](LICENSE.mb) file for details.
 
 
 
