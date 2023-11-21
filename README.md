@@ -96,4 +96,3 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE.mb) f
 - **User Tracking**: Customize the user tracking mode with the `userTrackingMode` property.
 - **Rotation**: Enable or disable map rotation using the `isRotateEnabled` property.
 - **Map Type**: Choose the map type (standard, satellite, hybrid) with the `mapType` property.
-# MapSwifty
