@@ -88,9 +88,6 @@ struct ContentView: View {
 ### License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE.mb) file for details.
-
-
-
 - **User Location**: You can track the user's location by binding the `userLocation` property.
 - **Zoom Levels**: Set the `minZoom` and `maxZoom` properties to specify the minimum and maximum zoom levels.
 - **User Tracking**: Customize the user tracking mode with the `userTrackingMode` property.
