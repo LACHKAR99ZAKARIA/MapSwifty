@@ -19,3 +19,5 @@ Add the following Swift package dependency to your Xcode project:
 
 ```swift
 .package(url: "https://github.com/your-username/SwiftyMap.git", from: "1.0.0")
+
+## Import
