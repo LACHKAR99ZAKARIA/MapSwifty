@@ -31,7 +31,7 @@ import SwiftyMap
 
 ### Initialization
 
-Create an array of `SwiftyAnnotationItem` objects to represent map annotations. Then, use the `MapSwifty` view in your SwiftUI hierarchy:
+Create an array of `CLLocationCoordinate2D` objects to represent map annotations. Then, use the `MapSwifty` view in your SwiftUI hierarchy:
 
 
 ``` 
@@ -51,8 +51,8 @@ struct ContentView: View {
             isRotateEnabled: true,
             mapType: .standard,
             annotationItems: [
-                SwiftyAnnotationItem(coordinate: CLLocationCoordinate2D(latitude: 37.7749, longitude: -122.4194), view: AnyView(Text("San Francisco"))),
-                SwiftyAnnotationItem(coordinate: CLLocationCoordinate2D(latitude: 34.0522, longitude: -118.2437), view: AnyView(Text("Los Angeles")))
+                CLLocationCoordinate2D(latitude: 37.7749, longitude: -122.4194),
+                CLLocationCoordinate2D(latitude: 34.0522, longitude: -118.2437)
             ]
         )
         .frame(height: 300)
@@ -60,9 +60,8 @@ struct ContentView: View {
 }
 
 
-```
 
-Adjust the parameters according to your requirements. You can customize the appearance of annotations by providing your own SwiftUI view in the `SwiftyAnnotationItem`.
+```
 
 ### Customization
 
