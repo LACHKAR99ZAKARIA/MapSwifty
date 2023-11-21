@@ -1,12 +1,6 @@
 import SwiftUI
 import MapKit
 
-//@available(iOS 13.0, *)
-//public struct SwiftyAnnotationItem {
-//    public var coordinate: CLLocationCoordinate2D
-//    public var view: any View
-//}
-
 
 @available(iOS 13.0, *)
 public struct MapSwifty: UIViewRepresentable {
