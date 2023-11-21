@@ -1,3 +1,17 @@
+**<div align="center">
+
+# MapSwifty
+
+SwiftUI component simplifying map integration using MapKit.
+
+![Swift](https://img.shields.io/badge/Swift-5.0-orange.svg)
+![iOS](https://img.shields.io/badge/iOS-13.0%2B-blue.svg)
+![License](https://img.shields.io/badge/License-MIT-green.svg)
+
+`MapSwifty` makes it easy to display maps with annotations, customize appearance, and track user location.
+
+</div>
+**
 # MapSwifty
 
 `SwiftyMap` is a SwiftUI component that provides a customizable map view using `MapKit`. It allows you to easily integrate maps into your SwiftUI app with support for annotations.
