@@ -18,7 +18,7 @@ To use `SwiftyMap` in your SwiftUI project, follow these steps:
 Add the following Swift package dependency to your Xcode project:
 
 ```swift
-.package(url: "https://github.com/your-username/SwiftyMap.git", from: "1.1.0")
+.package(url: "https://github.com/your-username/SwiftyMap.git", from: "1.0.0")
 ```
 
 ### Import
@@ -82,3 +82,4 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE.mb) f
 - **User Tracking**: Customize the user tracking mode with the `userTrackingMode` property.
 - **Rotation**: Enable or disable map rotation using the `isRotateEnabled` property.
 - **Map Type**: Choose the map type (standard, satellite, hybrid) with the `mapType` property.
+# MapSwifty
